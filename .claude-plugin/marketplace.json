@@ -1,0 +1,12 @@
+{
+  "name": "claude-model-advisor",
+  "owner": { "name": "model-advisor contributors" },
+  "description": "Claude Code plugins that help choose the right Claude model and effort per prompt.",
+  "plugins": [
+    {
+      "name": "model-advisor",
+      "source": "./plugins/model-advisor",
+      "description": "Checks every prompt and asks before the task starts when a different Claude model (Haiku/Sonnet/Opus) or effort level would fit better."
+    }
+  ]
+}

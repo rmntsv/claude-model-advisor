@@ -1,0 +1,77 @@
+import type { Family } from './score'
+
+// Labelled prompts: which model the task needs. Written by the author, so treat as a draft
+// and add your own. Russian entries exercise the Russian keyword lists.
+export const PROMPTS: { text: string; expected: Family }[] = [
+  { text: 'Переименуй переменную lot в lotSize во всём файле', expected: 'haiku' },
+  { text: 'Исправь опечатку в README: "установка" написана с ошибкой', expected: 'haiku' },
+  { text: 'Что делает функция CalculateLot в этом советнике?', expected: 'haiku' },
+  { text: 'Переведи комментарии в файле на английский', expected: 'haiku' },
+  { text: 'Отформатируй этот код по стилю проекта', expected: 'haiku' },
+  { text: 'Сгенерируй commit message для этого диффа', expected: 'haiku' },
+  { text: 'Rename the variable maxDD to maxDrawdown everywhere', expected: 'haiku' },
+  { text: 'Fix the typo in the error message in utils.ts', expected: 'haiku' },
+  { text: 'Convert this JSON config to YAML', expected: 'haiku' },
+  { text: 'Объясни кратко, что такое ATR', expected: 'haiku' },
+  { text: 'Добавь комментарии к функциям в этом файле', expected: 'haiku' },
+  { text: 'Замени все вхождения Buy на Long в файле', expected: 'haiku' },
+
+  { text: 'Напиши функцию расчёта среднего и добавь тест', expected: 'sonnet' },
+  { text: 'Исправь баг: советник открывает две сделки подряд на одной свече', expected: 'sonnet' },
+  { text: 'Реализуй трейлинг-стоп по ATR в этом советнике', expected: 'sonnet' },
+  { text: 'Добавь функцию экспорта отчёта в CSV', expected: 'sonnet' },
+  { text: 'Напиши индикатор MQL5 для скользящей средней с настраиваемым периодом', expected: 'sonnet' },
+  { text: 'Implement pagination for the trades table', expected: 'sonnet' },
+  { text: 'Fix the failing unit test in score.test.ts', expected: 'sonnet' },
+  { text: 'Рефактор: вынеси работу с ордерами в отдельный модуль', expected: 'sonnet' },
+  { text: 'Отладь, почему график не обновляется после смены символа', expected: 'sonnet' },
+  { text: 'Перепиши этот цикл через map и filter', expected: 'sonnet' },
+  { text: 'Добавь валидацию входных параметров советника', expected: 'sonnet' },
+  { text: 'Портируй этот индикатор с MQL4 на MQL5', expected: 'sonnet' },
+
+  { text: 'Спроектируй архитектуру торговой системы с несколькими стратегиями и общим риск-менеджментом', expected: 'opus' },
+  { text: 'Проведи аудит безопасности API: найди уязвимости и предложи исправления', expected: 'opus' },
+  { text: 'Найди первопричину: советник иногда зависает, подозреваю race condition в обработчике ордеров', expected: 'opus' },
+  { text: 'Какие компромиссы между хранением состояния в памяти и в базе для нашего бота? Сравни и порекомендуй', expected: 'opus' },
+  { text: 'Почему не работает синхронизация между двумя потоками, если оба пишут в один буфер?', expected: 'opus' },
+  { text: 'Design the architecture for a multi-tenant signal service with per-user rate limits', expected: 'opus' },
+  { text: 'Investigate the memory leak: heap grows 50MB per hour under load, find the root cause', expected: 'opus' },
+  { text: 'Придумай стратегию разработки и миграции с монолита на микросервисы', expected: 'opus' },
+  { text: 'Докажи, что этот алгоритм балансировки корректен при отказе узла', expected: 'opus' },
+  { text: 'Найди все баги в этом модуле управления рисками и объясни, как они взаимодействуют', expected: 'opus' },
+
+  // Hard: no heuristic keywords
+  { text: 'Сделай название кнопки короче: вместо «Подтвердить заказ» пусть будет «Заказать»', expected: 'haiku' },
+  { text: 'Make this sentence more polite: give me the report now', expected: 'haiku' },
+  { text: 'Какой порт по умолчанию у PostgreSQL?', expected: 'haiku' },
+  { text: 'Turn this list of names into a comma-separated line', expected: 'haiku' },
+  { text: 'Убери лишние пустые строки в этом файле', expected: 'haiku' },
+  { text: 'What does the HTTP status 429 mean?', expected: 'haiku' },
+  { text: 'Подбери синоним к слову «быстрый» для заголовка', expected: 'haiku' },
+
+  { text: 'Сделай так, чтобы таблица сделок сортировалась по клику на заголовок колонки', expected: 'sonnet' },
+  { text: 'Users report the login page flashes blank for a second before showing the form. Make it stop', expected: 'sonnet' },
+  { text: 'Нужна кнопка «Закрыть все позиции» с подтверждением в панели управления', expected: 'sonnet' },
+  { text: 'Add retry with backoff to the HTTP client when the server returns 503', expected: 'sonnet' },
+  { text: 'Сделай, чтобы лог-файл не рос бесконечно: ротация по размеру', expected: 'sonnet' },
+  { text: 'Split this 400-line component into smaller ones without changing behaviour', expected: 'sonnet' },
+
+  { text: 'Our nightly job sometimes processes the same order twice and sometimes skips one. It only happens when two workers start within the same second. Work out why and how to make it safe', expected: 'opus' },
+  { text: 'Нужно решить, как хранить историю цен за 10 лет для 500 инструментов, чтобы запросы по диапазону отдавались за миллисекунды. Сравни варианты хранения и объясни, что выберешь и почему', expected: 'opus' },
+  { text: 'Помоги выбрать между переписыванием модуля с нуля и постепенной заменой кусков. Учти, что команда из двух человек и релиз через месяц', expected: 'opus' },
+  { text: 'Two services each retry failed requests to the other, and under load the whole cluster slows to a crawl until restart. Explain the mechanism and propose a design that prevents it', expected: 'opus' },
+  { text: 'Prove that this cache invalidation scheme never serves data older than the TTL', expected: 'opus' },
+  { text: 'Скрипт на сервере падает раз в несколько часов по-разному и без воспроизводимости. Нужно выяснить, что общего между падениями', expected: 'opus' },
+  { text: 'Придумай схему лицензирования для плагина, которую сложно обойти, но которая не раздражает честных пользователей и работает офлайн', expected: 'opus' },
+
+  // Held-out: written before the heuristic was strengthened, not fitted to it
+  { text: 'Sometimes the websocket reconnects and we get duplicated ticks, but only after the server has been up for days. What could explain this and how should we make the feed robust?', expected: 'opus' },
+  { text: 'У нас три варианта кэширования котировок: Redis, локальный LRU и memory-mapped файл. Выбери один и обоснуй, учитывая 200 процессов на одной машине', expected: 'opus' },
+  { text: 'Why does latency spike every ~15 minutes even though CPU and memory look flat? Walk through the likely mechanisms', expected: 'opus' },
+  { text: 'Модель риск-менеджмента ведёт себя странно: просадка растёт нелинейно при увеличении числа пар. Разберись, что лежит в основе этого эффекта', expected: 'opus' },
+  { text: 'We need to guarantee exactly-once processing across a queue and a database without distributed transactions. Propose how', expected: 'opus' },
+  { text: 'Агент иногда зацикливается и сжигает токены, а иногда нет, хотя вход тот же. Нужно понять, откуда разброс', expected: 'opus' },
+  { text: 'Сравни два файла и покажи отличия', expected: 'haiku' },
+  { text: 'Add a design token for the primary color to the stylesheet', expected: 'sonnet' },
+  { text: 'Sometimes I forget the password, so add a reset link to the login form', expected: 'sonnet' },
+]

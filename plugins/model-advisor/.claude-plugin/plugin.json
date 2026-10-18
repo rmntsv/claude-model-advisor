@@ -1,0 +1,8 @@
+{
+  "name": "model-advisor",
+  "version": "0.5.0",
+  "description": "Checks every prompt and asks before the task starts when a different Claude model (Haiku/Sonnet/Opus) or effort level would fit better.",
+  "author": { "name": "model-advisor contributors" },
+  "license": "MIT",
+  "keywords": ["model", "routing", "cost", "tokens", "haiku", "sonnet", "opus", "effort"]
+}
